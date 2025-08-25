@@ -5,6 +5,7 @@ import matplotlib
 matplotlib.use("Agg")  # Use non-GUI backend for headless operation
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.patches import FancyArrowPatch
  
 from nav_msgs.msg import OccupancyGrid,Odometry
 from visualization_msgs.msg import MarkerArray, Marker
@@ -64,6 +65,7 @@ class PlotMapMarkersNoTF(Node):
 
     def on_markers(self, arr: MarkerArray):
         with self.lock:
+            self.xy = []
             for m in arr.markers:
                 if m.type in (Marker.POINTS, Marker.SPHERE_LIST, Marker.LINE_STRIP, Marker.LINE_LIST):
                     for p in m.points:
@@ -117,21 +119,30 @@ class PlotMapMarkersNoTF(Node):
                 xs, ys = zip(*self.xy)
                 ax.scatter(xs, ys, s=20, marker='o', c='blue', edgecolors='blue', linewidths=1.5, zorder=10)
 
-       
-            i_x,i_y =self.coords[0]
-            ax.scatter(i_x,i_y,s=30,marker='o', c='green',edgecolors='green',linewidths=1.5,zorder=10)
-            
-
-            x1,y1=self.coords[-1]
-            x2,y2=self.coords[-2]   
-            arrow_colour="#850f0f"
-            ax.quiver(x1, y1, x2 - x1, y2 - y1, angles="xy", scale_units="xy", scale=4, color='black')
-
-            self.coords = self.coords[:-10]
             if self.coords:
                 print(len(self.coords))
                 ox, oy = zip(*self.coords)
                 ax.plot(ox, oy, c='red', linewidth=1.5, zorder=5)
+                
+                # Green circle at the EXACT START of path (first coordinate)
+                start_x, start_y = self.coords[0]
+                ax.scatter(start_x, start_y, s=10, marker='o', c='green', 
+                          edgecolors='green', linewidths=1.5, zorder=12)
+                
+                # Black arrow at the EXACT END of path (if we have at least 2 points)
+                if len(self.coords) >= 2:
+                    end_x, end_y = self.coords[-1]
+                    prev_x, prev_y = self.coords[-2]
+                    
+                    # Create a fancy arrow patch
+                    arrow = FancyArrowPatch((prev_x, prev_y), (end_x, end_y),
+                                           connectionstyle="arc3", 
+                                           arrowstyle='->', 
+                                           mutation_scale=8,  # Size of arrowhead
+                                           color='red',
+                                           linewidth=2,
+                                           zorder=15)
+                    ax.add_patch(arrow)
 
             # Add the custom legend
             # ax.legend(

@@ -86,7 +86,7 @@ Explore::Explore()
   this->declare_parameter("orientation_scale", 0.0);
   this->declare_parameter("gain_scale", 1.0);
   this->declare_parameter("min_frontier_size", 0.5);
-  this->declare_parameter("return_to_init", false);
+  this->declare_parameter("return_to_init", true);
   this->declare_parameter("boundary_distance", 1.0);
   this->declare_parameter("direction_bias_weight", 3.0);
   this->declare_parameter("backtrack_penalty_weight", 5.0);
