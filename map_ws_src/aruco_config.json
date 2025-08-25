@@ -1,0 +1,31 @@
+{
+  "cameras": {
+    "back": {
+      "frame_id": "panther/base_link/zedx_stereolabs_zed_color",
+      "K": [224.0664291381836, 0.0, 320.0, 0.0, 224.06643390655518, 240.0, 0.0, 0.0, 1.0],
+      "D": [0.0, 0.0, 0.0, 0.0, 0.0],
+      "topic": "/zedx/zed_node/rgb/image_rect_color"
+    },
+    "front": {
+      "frame_id": "panther/camera_front",
+      "K": [1164.4581, 0.0, 940.0309, 0.0, 1163.1139, 538.5079, 0.0, 0.0, 1.0],
+      "D": [0.07256, -0.10708, 0.00087, 0.00056, 0.04991],
+      "topic": "/panther/camera_front/image_raw"
+    },
+    "left": {
+      "frame_id": "panther/camera_left",
+      "K": [1164.4581, 0.0, 940.0309, 0.0, 1163.1139, 538.5079, 0.0, 0.0, 1.0],
+      "D": [0.07256, -0.10708, 0.00087, 0.00056, 0.04991],
+      "topic": "/panther/camera_left/image_raw"
+    },
+    "right": {
+      "frame_id": "panther/camera_right",
+      "K": [1164.4581, 0.0, 940.0309, 0.0, 1163.1139, 538.5079, 0.0, 0.0, 1.0],
+      "D": [0.07256, -0.10708, 0.00087, 0.00056, 0.04991],
+      "topic": "/panther/camera_right/image_raw"
+    }
+  },
+  "marker_size_m": 0.15,
+  "map_frame": "panther/odom",
+  "active_cameras": ["left"]
+}

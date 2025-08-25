@@ -1,0 +1,28 @@
+/**:
+  ros__parameters:
+    robot_base_frame: panther/base_link
+    return_to_init: true
+    costmap_topic: rtabmap/map
+    costmap_updates_topic: rtabmap/map_updates
+    visualize: true
+    planner_frequency: 0.5  # Reduced frequency for more stable exploration
+    progress_timeout: 30.0
+    potential_scale: 3.0
+    orientation_scale: 0.0
+    gain_scale: 1.0
+    transform_tolerance: 0.3
+    min_frontier_size: 0.75
+    goal_tolerance: 0.5
+    
+    # Enhanced boundary awareness parameters
+    boundary_distance: 1.2  # Increased distance to maintain from boundary markers
+    direction_bias_weight: 3.0  # Increased weight for stronger directional consistency
+    backtrack_penalty_weight: 5.0  # Penalty for backtracking through explored areas
+    min_progress_distance: 3.0  # Minimum distance before allowing direction changes
+    
+    # Recovery behaviors
+    recovery_behavior_enabled: true
+    recovery_behavior_plugins: ["rotate_to_goal", "back_up", "clear_costmap_recovery"]
+    back_up_distance: 0.5
+    rotate_to_goal_distance: 1.0
+    clear_costmap_recovery: true

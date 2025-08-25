@@ -1,0 +1,36 @@
+explore_node:
+  ros__parameters:
+    # Basic exploration parameters
+    robot_base_frame: panther/base_link
+    costmap_topic: /global_costmap/costmap
+    costmap_updates_topic: /global_costmap/costmap_updates
+    visualize: true
+    
+    # Planning frequency - improved for boundary-aware exploration
+    planner_frequency: 1.0  # Increased from 0.15 for more responsive planning
+    progress_timeout: 30.0
+    
+    # Frontier detection and scoring parameters
+    potential_scale: 3.0
+    orientation_scale: 0.0
+    gain_scale: 1.0
+    transform_tolerance: 0.3
+    min_frontier_size: 0.5  # Smaller than rtabmap version for more frontiers
+    
+    # === BOUNDARY-AWARE EXPLORATION PARAMETERS ===
+    # ArUco boundary marker topic
+    boundary_topic: "/aruco_markers"
+    
+    # Robot localization pose topic for boundary monitoring
+    robot_pose_topic: "/rtabmap/localization_pose"
+    
+    # Safety margin from boundary edges (meters)
+    boundary_safety_margin: 0.5
+    
+    # How long to wait before considering boundary data stale (seconds)
+    boundary_timeout: 30.0
+    
+    # === CLOCKWISE EXPLORATION PARAMETERS ===
+    # Weight for clockwise direction preference in cost function
+    # Higher values = stronger clockwise bias
+    clockwise_weight: 2.0
