@@ -75,6 +75,8 @@ controller_server:
     failure_tolerance: 0.3
     progress_checker_plugins: ["progress_checker"]
     goal_checker_plugins: ["general_goal_checker"] # "precise_goal_checker"
+    current_goal_checker: "general_goal_checker"
+    current_progress_checker: "progress_checker"
     controller_plugins: ["FollowPath"]
     use_realtime_priority: false
     min_vel_x: -2.0
