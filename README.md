@@ -5,12 +5,10 @@ This workspace contains the complete robot pipeline for autonomous exploration i
 ## Contents
 
 - **RTAB-Map**: 3D mapping with LiDAR and cameras
-- **Nav2**: Fast and safe navigation using ROS 2 navigation stack
+- **Nav2**: Fast and safe navigation using ROS2 navigation stack
 - **Explore Lite**: Custom implementation for autonomous exploration with boundary logic
 - **ArUco Localization Node**: Detects ArUco tags to set virtual map boundaries
-- **Map Saver Node**: Saves generated maps for later use
-- **Plotter and ArUco Python Nodes**: Utility nodes for visualization and marker-based localization
-
+- **Map Saver Node**: Saves generated maps along with the path taken by the robot
 ---
 
 ## Quickstart Instructions
